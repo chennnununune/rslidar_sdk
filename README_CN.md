@@ -2,7 +2,7 @@
 
 [English Version](README.md) 
 
-
+**加入了将消息时间戳设置为第一个点的时间戳的选项. 见  [MOD_TIMESTAMP.md](MOD_TIMESTAMP.md)**
 
 ## 1.1 工程简介
 

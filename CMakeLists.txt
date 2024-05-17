@@ -3,9 +3,14 @@ cmake_policy(SET CMP0048 NEW)
 project(rslidar_sdk)
 
 #=======================================
+# Custom Timestamp (FIRST, LAST)
+#=======================================
+set(TIMESTAMP LAST)
+
+#=======================================
 # Custom Point Type (XYZI, XYZIRT)
 #=======================================
-set(POINT_TYPE XYZI)
+set(POINT_TYPE XYZIRT)
 
 #=======================================
 # Compile setup (ORIGINAL, CATKIN, COLCON)
@@ -70,6 +75,15 @@ add_definitions(-std=c++14)
 endif()
 
 add_compile_options(-Wall)
+
+#========================
+# Timestamp Definition
+#========================
+if(${TIMESTAMP} STREQUAL "FIRST")
+  add_definitions(-DTIMESTAMP_FIRST)
+elseif(${TIMESTAMP} STREQUAL "LAST")
+  add_definitions(-DTIMESTAMP_LAST)
+endif()
 
 #========================
 # Point Type Definition

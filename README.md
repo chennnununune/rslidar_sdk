@@ -2,7 +2,7 @@
 
  [中文介绍](README_CN.md) 
 
-
+**Added an option to set the timestamp of the msg to the time of the first point. See  [MOD_TIMESTAMP.md](MOD_TIMESTAMP.md)**
 
 ## 1 Introduction
 

@@ -149,6 +149,14 @@ inline sensor_msgs::PointCloud2 toRosMsg(const LidarPointCloudMsg& rs_msg, const
 
   ros_msg.header.seq = rs_msg.seq;
   ros_msg.header.stamp = ros_msg.header.stamp.fromSec(rs_msg.timestamp);
+
+#ifdef POINT_TYPE_XYZIRT
+#ifdef TIMESTAMP_FIRST
+  sensor_msgs::PointCloud2Iterator<double> iter_first_timestamp_(ros_msg, "timestamp");
+  ros_msg.header.stamp = ros_msg.header.stamp.fromSec(*iter_first_timestamp_);
+#endif
+#endif
+
   ros_msg.header.frame_id = frame_id;
 
   return ros_msg;
@@ -316,6 +324,15 @@ inline sensor_msgs::msg::PointCloud2 toRosMsg(const LidarPointCloudMsg& rs_msg, 
 
   ros_msg.header.stamp.sec = (uint32_t)floor(rs_msg.timestamp);
   ros_msg.header.stamp.nanosec = (uint32_t)round((rs_msg.timestamp - ros_msg.header.stamp.sec) * 1e9);
+
+#ifdef POINT_TYPE_XYZIRT
+#ifdef TIMESTAMP_FIRST
+  sensor_msgs::PointCloud2Iterator<double> iter_first_timestamp_(ros_msg, "timestamp");
+  ros_msg.header.stamp.sec = (uint32_t)floor(*iter_first_timestamp_);
+  ros_msg.header.stamp.nanosec = (uint32_t)round((*iter_first_timestamp_ - ros_msg.header.stamp.sec) * 1e9);
+#endif
+#endif
+
   ros_msg.header.frame_id = frame_id;
 
   return ros_msg;
