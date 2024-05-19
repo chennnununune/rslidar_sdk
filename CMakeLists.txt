@@ -85,6 +85,10 @@ elseif(${TIMESTAMP} STREQUAL "LAST")
   add_definitions(-DTIMESTAMP_LAST)
 endif()
 
+message(=============================================================)
+message("-- TIMESTAMP is ${TIMESTAMP}")
+message(=============================================================)
+
 #========================
 # Point Type Definition
 #========================
